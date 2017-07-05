@@ -37,6 +37,12 @@ class LocationServicesDialogBoxModule extends ReactContextBaseJavaModule impleme
         checkLocationService(false);
     }
 
+    @ReactMethod
+    public void isLocationServicesEnabled(Promise promise) {
+        LocationManager locationManager = (LocationManager) getReactApplicationContext().getSystemService(Context.LOCATION_SERVICE);
+        promise.resolve(locationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER));
+    }
+
     private void checkLocationService(Boolean activityResult) {
         // Robustness check
         if (currentActivity == null || map == null || promiseCallback == null) return;
