@@ -63,6 +63,12 @@ class LocationServicesDialogBoxModule extends ReactContextBaseJavaModule impleme
         final AlertDialog.Builder builder = new AlertDialog.Builder(activity);
         final String action = android.provider.Settings.ACTION_LOCATION_SOURCE_SETTINGS;
 
+        builder.setOnCancelListener(new DialogInterface.OnCancelListener() {
+            @Override
+            public void onCancel(DialogInterface dialog) {
+                promise.reject(new Throwable("disabled"));
+            }
+        });
         builder.setMessage(Html.fromHtml(configMap.getString("message")))
                 .setPositiveButton(configMap.getString("ok"),
                         new DialogInterface.OnClickListener() {
@@ -75,7 +81,7 @@ class LocationServicesDialogBoxModule extends ReactContextBaseJavaModule impleme
                         new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialogInterface, int id) {
                                 promise.reject(new Throwable("disabled"));
-                                dialogInterface.cancel();
+                                dialogInterface.dismiss();
                             }
                         });
         builder.create().show();
