@@ -18,7 +18,7 @@ public class LocationServicesDialogBoxPackage implements ReactPackage {
         return modules;
     }
 
-    // Deprecated in RN 0.47
+    // Deprecated RN 0.47
     public List<Class<? extends JavaScriptModule>> createJSModules() {
         return Collections.emptyList();
     }
