@@ -42,7 +42,7 @@ public class LocationServicesDialogBoxModule extends ReactContextBaseJavaModule 
     public void isLocationServicesEnabled(Promise promise) {
         LocationManager locationManager = (LocationManager) getReactApplicationContext().getSystemService(Context.LOCATION_SERVICE);
         Boolean isGPSEnabled = locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER);
-        promise.resolve(isEnabled || locationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER));
+        promise.resolve(isGPSEnabled || locationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER));
     }
 
     @ReactMethod
